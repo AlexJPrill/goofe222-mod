@@ -1,0 +1,10 @@
+data:extend(
+    {
+        {
+            type="ArtilleryProjectile",
+            name="artillery-radar",
+            reveal_map=true,
+            icon=graphics.."artillery-radar.png"
+        }
+    }
+)
