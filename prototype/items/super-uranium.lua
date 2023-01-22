@@ -4,13 +4,10 @@ super_uranium.name="super-uranium"
 super_uranium.icons=
 {
     {
-        icon=super_uranium.icon,
-        icon_size=64,
-        tine={r=255,g=1,b=1,a=1},
-        shift={4,-8}
-
+        icon=super_uranium.icon
     },
 }
+super_uranium.stack_size=50
 
 
 
