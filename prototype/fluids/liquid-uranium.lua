@@ -1,13 +1,10 @@
-data:extend(
+local liquid_uranium = table.deepcopy(data.raw["fluid"]["lubricant"])
+
+liquid_uranium.name="liquid-uranium"
+liquid_uranium.icons=
+{
     {
-        {
-            type="fluid",
-            name="liquid-uranium",
-            default_temperature = 100,
-            base_color={r=255,g=255,b=255},
-            flow_color={r=255,g=255,b=255},
-            icon = graphics.."pk.png",
-            icon_size=64
-        }
-    }
-)
+        icon=liquid_uranium.icon
+    },
+}
+data:extend{liquid_uranium}
