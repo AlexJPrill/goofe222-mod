@@ -1,0 +1,73 @@
+local strange_crystal_ore = table.deepcopy(data.raw["resource"]["uranium-ore"])
+
+--Yes we got this to work and it feels amazing to have this work as of right now okay
+--Now we just need to obtain an understanding of how everything works and then create our own texture for this
+
+data:extend(
+    {
+        {
+            type="autoplace-control",
+            name="strange-crystal-ore",
+            category="resource"
+        },
+        {
+            type="noise-layer",
+            name="strange-crystal-ore"
+        },
+        {
+            type="resource",
+            name="strange-crystal-ore",
+            icon=strange_crystal_ore.icon,
+            icon_size=64,
+            flags={"placeable-neutral"},
+            map_color={r=255,g=0,b=0},
+            minable=
+            {
+                hardness=1,
+                mining_time=0.5,
+                result="strange-crystal"
+            },
+            collision_box={{-.1,-.1},{.1,.1}},
+            selection_box={{-.5,-.5},{.5,.5}},
+            autoplace=
+            {
+                control="strange-crystal-ore",
+                sharpness=1,
+                richnesss_multiplier=13000,
+                richness_base=350,
+                size_control_multiplier=.1,
+                peaks={
+                    {
+                        influence=0.3,
+                        starting_area_weight_optimal=0,
+                        starting_area_weight_range=0,
+                        starting_area_weight_max_range=2,
+                    },
+                    {
+                        influence=.55,
+                        noise_layer="strange-crystal-ore",
+                        noise_octabes_difference=-2.3,
+                        noise_persistence=0.4,
+                        starting_area_weight_optimal=0,
+                        starting_area_weight_range=0,
+                        starting_area_weight_max_range=2,
+                    },
+                },
+            },
+            stage_counts={1000,600,400,200,100,50,20,1},
+            stages=
+            {
+                sheet=
+                {
+                    filename=strange_crystal_ore.stages.sheet.filename,
+                    priority="extra-high",
+                    width=38,
+                    height=38,
+                    frame_count=4,
+                    variation_count=8
+                }
+            },
+        },
+    }
+)
+
