@@ -6,6 +6,7 @@ data:extend(
             
             category="chemistry",
             energy_required=50,
+            crafting_machine_tint={primary={r=0,g=255,b=0}},
             ingredients=
             {
                 {"uranium-235", 10}
