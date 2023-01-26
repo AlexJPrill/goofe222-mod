@@ -1,8 +1,8 @@
 local strange_crystal_ore = table.deepcopy(data.raw["resource"]["uranium-ore"])
-
+local resource_autoplace=require("resource-autoplace")
 --Yes we got this to work and it feels amazing to have this work as of right now okay
 --Now we just need to obtain an understanding of how everything works and then create our own texture for this
-
+--[[
 data:extend(
     {
         {
@@ -20,7 +20,7 @@ data:extend(
             icon=strange_crystal_ore.icon,
             icon_size=64,
             flags={"placeable-neutral"},
-            map_color={r=255,g=0,b=0},
+            map_color={r=255,g=255,b=0},
             minable=
             {
                 hardness=1,
@@ -33,25 +33,28 @@ data:extend(
             {
                 control="strange-crystal-ore",
                 sharpness=1,
-                richnesss_multiplier=13000,
+                richness=true,
+                richnesss_multiplier=55,
                 richness_base=350,
-                size_control_multiplier=.1,
+                size_control_multiplier=0.06,
+                influence=0.1,
                 peaks={
-                    {
-                        influence=0.3,
-                        starting_area_weight_optimal=0,
-                        starting_area_weight_range=0,
-                        starting_area_weight_max_range=2,
-                    },
-                    {
-                        influence=.55,
+                    
+    
+                        {
+                            influence=0.1,
+                            starting_area_weight_optimal=0,
+                            starting_area_weight_range=0,
+                            starting_area_weight_max_range=2,
+                        },
+                        {
                         noise_layer="strange-crystal-ore",
-                        noise_octabes_difference=-2.3,
-                        noise_persistence=0.4,
+                        noise_octabes_difference=-0.01,
+                        noise_persistence=0.1,
                         starting_area_weight_optimal=0,
                         starting_area_weight_range=0,
                         starting_area_weight_max_range=2,
-                    },
+                        },
                 },
             },
             stage_counts={1000,600,400,200,100,50,20,1},
@@ -70,4 +73,57 @@ data:extend(
         },
     }
 )
+]]
+
+
+
+
+data:extend({
+    {
+        type="resource",
+        name="strange-crystal-ore",
+        icon=strange_crystal_ore.icon,
+        icon_size=64,
+        icon_mipmaps=4,
+        flags={"placeable-neutral"},
+        minable=
+        {
+            mining_time=0.5,
+            result="strange-crystal"
+        },
+        collision_box={{-0.1,-0.1},{0.1,0.1}},
+        selection_box={{-0.5,-0.5},{0.5,0.5}},
+        autoplace=resource_autoplace.resource_autoplace_settings
+        {
+            name="strange-crystal-ore",
+            base_density=10000,
+            has_starting_area_placement=false,
+            regular_rq_factor_multiplier=800.1,
+            candidate_spot_count=10
+        },
+        stage_counts={1500,9500,5500,2900,1300,400,150,80},
+        stages=
+        {
+            sheet=
+            {
+                filename=strange_crystal_ore.stages.sheet.filename,
+                priority="extra-high",
+                size=64,
+                frame_count=8,
+                variation_count=8
+            }
+        },
+        map_color={r=200,g=0,b=255}
+    },
+    {
+        type="autoplace-control",
+        category="resource",
+        name="strange-crystal-ore",
+        richness=true
+    },
+    {
+        type="noise-layer",
+        name="strange-crystal-ore"
+    }
+})
 
