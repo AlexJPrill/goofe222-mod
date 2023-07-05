@@ -18,8 +18,11 @@ require(recipes .."liquid-uranium-recipe")
 --strange-crystal
 require(items.."strange-crystal")
 require(ores.."strange-crystal-ore")
---This may only be a temporary recipe
---require(recipes.."strange-crystal-recipe")
+
+
+--Strange-circuit
+
+--strange-science
 
 --strange-fluid
 require(fluids.."strange-fluid")
